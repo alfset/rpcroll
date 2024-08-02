@@ -16,7 +16,7 @@ function getProxyMiddleware(endpoint) {
             target: targets,
             changeOrigin: true,
             pathRewrite: {
-                [`^/rpc/${endpoint}`]: '',
+                [`^/rpc/${endpoint}`]: '', // Ensure this matches the Vercel route
             },
         });
     }
@@ -35,8 +35,8 @@ function getProxyMiddleware(endpoint) {
     return targetMiddleware;
 }
 
-module.exports = (req, res, next) => {
-    const endpoint = 'symphony';
+module.exports = (req, res) => {
+    const endpoint = 'symphony'; // Use the correct endpoint name
     const middleware = getProxyMiddleware(endpoint);
-    middleware(req, res, next);
+    middleware(req, res);
 };
