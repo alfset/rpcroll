@@ -1,0 +1,11 @@
+{
+    "version": 2,
+    "builds": [{
+        "src": "rpc/*.js",
+        "use": "@vercel/node"
+    }],
+    "routes": [{
+        "src": "/rpc/(.*)",
+        "dest": "/rpc/$1.js"
+    }]
+}
